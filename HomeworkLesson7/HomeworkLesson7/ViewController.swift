@@ -21,10 +21,6 @@ class Menu {
 }
 
 class Product{
-    
-}
-
-class Snack: Product{
     var price: Int
     var name: String
     init(price: Int, name: String) {
@@ -33,30 +29,28 @@ class Snack: Product{
     }
 }
 
+class Snack: Product{
+    override init(price: Int, name: String){
+        super.init(price: price, name: name)
+    }
+    
+}
+
 class MainMenu: Product{
-    var price: Int
-    var name: String
-    init(price: Int, name: String) {
-        self.price = price
-        self.name = name
+    override init(price: Int, name: String){
+        super.init(price: price, name: name)
     }
 }
 
 class Drinks: Product{
-    var price: Int
-    var name: String
-    init(price: Int, name: String) {
-        self.price = price
-        self.name = name
+    override init(price: Int, name: String){
+        super.init(price: price, name: name)
     }
 }
 
 class Deserts: Product{
-    var price: Int
-    var name: String
-    init(price: Int, name: String) {
-        self.price = price
-        self.name = name
+    override init(price: Int, name: String){
+        super.init(price: price, name: name)
     }
 }
 
@@ -64,17 +58,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let snack = Product(price: 10, name: "Snikers")
-        let mainMenu = Product(price: 30, name: "Beef")
-        let drink = Product(price: 20, name: "Latte")
-        let dessert = Product(price: 20, name: "Cake")
+        let snack = Snack(price: 10, name: "Snikers")
+        let mainMenu = MainMenu(price: 30, name: "Beef")
+        let drink = Drinks(price: 20, name: "Latte")
+        let dessert = Deserts(price: 20, name: "Cake")
         let menu = Menu(snack: snack, mainMenu: mainMenu, drink: drink, dessert: dessert)
         func printOutMeal(_ product: Product){
             print("Name: '\(product.name)' and price: '\(product.price)'")
         }
-        printOutMeal(mainMenu)
+      
+        printOutMeal(drink)
     }
 
 
 }
-

@@ -82,7 +82,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setButtonTitle()
-        printOutMeal(drink)
     }
     
     let snack = Snack(price: 10, name: "Bruschette")
@@ -144,7 +143,7 @@ class ViewController: UIViewController {
             mainButton.setTitle("Выйти из системы", for: .normal)
             mainButtonTappedCount = 2
             mainPriceLabel.text = "Выручка за смену: \(sumOfDay)$. Чтобы полностью закончить смену выйдите из системы"
-            
+            print("Выручка за смену: \(sumOfDay)$")
         }
         else {
             mainButton.setTitle("Начать смену", for: .normal)

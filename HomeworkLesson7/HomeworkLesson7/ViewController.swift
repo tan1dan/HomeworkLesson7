@@ -59,59 +59,98 @@ class Deserts: Product{
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var snack: UIButton!
+    @IBOutlet weak var snackButton: UIButton!
     
-    @IBOutlet weak var mainMenu: UIButton!
-    @IBOutlet weak var secondMainMenu: UIButton!
-    @IBOutlet weak var drink: UIButton!
-    @IBOutlet weak var dessert: UIButton!
+    @IBOutlet weak var mainMenuButton: UIButton!
+    @IBOutlet weak var secondMainMenuButton: UIButton!
+    @IBOutlet weak var drinkButton: UIButton!
+    @IBOutlet weak var dessertButton: UIButton!
     @IBOutlet weak var mainButton: UIButton!
     
     @IBOutlet weak var mainPriceLabel: UILabel!
     
     func setButtonTitle(){
-        snack.setTitle("Bruschette", for: .normal)
-        mainMenu.setTitle("Soup 'Borsh'", for: .normal)
-        secondMainMenu.setTitle("Beef", for: .normal)
-        drink.setTitle("Mojito", for: .normal)
-        dessert.setTitle("Strawberry cake", for: .normal)
+        snackButton.setTitle("Bruschette", for: .normal)
+        mainMenuButton.setTitle("Soup 'Borsh'", for: .normal)
+        secondMainMenuButton.setTitle("Beef", for: .normal)
+        drinkButton.setTitle("Mojito", for: .normal)
+        dessertButton.setTitle("Strawberry cake", for: .normal)
         mainButton.setTitle("Начать смену", for: .normal)
         mainPriceLabel.text = "Смена не начата"
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setButtonTitle()
-        var mainButtonTapped = false
-        
-        let snack = Snack(price: 10, name: "Bruschette")
-        let mainMenu = MainMenu(price: 25, name: "Soup 'Borsh'")
-        let secondMainMenu = MainMenu(price: 30, name: "Beef")
-        let drink = Drinks(price: 20, name: "Mojito")
-        let dessert = Deserts(price: 20, name: "Strawberry cake")
-        let menu = Menu(snack: snack, mainMenu: mainMenu, drink: drink, dessert: dessert)
-        func printOutMeal(_ product: Product){
-            print("Name: '\(product.name)' and price: '\(product.price)'")
-        }
-      
         printOutMeal(drink)
     }
     
+    let snack = Snack(price: 10, name: "Bruschette")
+    let mainMenu = MainMenu(price: 25, name: "Soup 'Borsh'")
+    let secondMainMenu = MainMenu(price: 30, name: "Beef")
+    let drink = Drinks(price: 20, name: "Mojito")
+    let dessert = Deserts(price: 20, name: "Strawberry cake")
+    
+    func printOutMeal(_ product: Product){
+        print("Name: '\(product.name)' and price: '\(product.price)'")
+    }
+    
+    
+    var mainButtonTappedCount = 0
+    var sumOfDay = 0
     @IBAction func snackButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 1 {
+            sumOfDay+=snack.price
+            mainPriceLabel.text = "+ \(snack.name)"
+        }
         
     }
     @IBAction func mainMenuButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 1 {
+            sumOfDay+=mainMenu.price
+            mainPriceLabel.text = "+ \(mainMenu.name)"
+        }
     }
     
     @IBAction func secondMainMenuButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 1 {
+            sumOfDay+=secondMainMenu.price
+            mainPriceLabel.text = "+ \(secondMainMenu.name)"
+        }
     }
     
     @IBAction func drinkButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 1 {
+            sumOfDay+=drink.price
+            mainPriceLabel.text = "+ \(drink.name)"
+        }
     }
     
     @IBAction func dessertButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 1 {
+            sumOfDay+=dessert.price
+            mainPriceLabel.text = "+ \(dessert.name)"
+        }
     }
     
     @IBAction func mainButtonTapped(_ sender: UIButton) {
+        if mainButtonTappedCount == 0 {
+            mainButton.setTitle("Закончить смену", for: .normal)
+            mainButtonTappedCount = 1
+            mainPriceLabel.text = "Смена начата"
+            
+        }
+        else if mainButtonTappedCount == 1 {
+            mainButton.setTitle("Выйти из системы", for: .normal)
+            mainButtonTappedCount = 2
+            mainPriceLabel.text = "Выручка за смену: \(sumOfDay)$. Чтобы полностью закончить смену выйдите из системы"
+            
+        }
+        else {
+            mainButton.setTitle("Начать смену", for: .normal)
+            mainPriceLabel.text = "Смена не начата"
+            mainButtonTappedCount = 0
+            sumOfDay = 0
+        }
     }
 }

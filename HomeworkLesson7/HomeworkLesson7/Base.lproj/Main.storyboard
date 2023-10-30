@@ -94,13 +94,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dessert" destination="Lqx-EY-3wr" id="QuR-ab-RIj"/>
-                        <outlet property="drink" destination="bUR-dD-7NN" id="dJK-fX-jfs"/>
+                        <outlet property="dessertButton" destination="Lqx-EY-3wr" id="QuR-ab-RIj"/>
+                        <outlet property="drinkButton" destination="bUR-dD-7NN" id="dJK-fX-jfs"/>
                         <outlet property="mainButton" destination="f3z-9z-VUb" id="MxN-WN-NlY"/>
-                        <outlet property="mainMenu" destination="cfs-XX-I3r" id="FxE-Sy-Bxs"/>
+                        <outlet property="mainMenuButton" destination="cfs-XX-I3r" id="FxE-Sy-Bxs"/>
                         <outlet property="mainPriceLabel" destination="yIe-Ng-TjH" id="gRW-Ia-ZqB"/>
-                        <outlet property="secondMainMenu" destination="O9z-19-Q2u" id="hab-OU-sBz"/>
-                        <outlet property="snack" destination="OBx-Bi-wbx" id="yaa-cp-fOg"/>
+                        <outlet property="secondMainMenuButton" destination="O9z-19-Q2u" id="hab-OU-sBz"/>
+                        <outlet property="snackButton" destination="OBx-Bi-wbx" id="yaa-cp-fOg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -7,9 +7,11 @@
 
 import UIKit
 
-//class Singleton {
-//    static let shared = Singleton()
-//}
+class Singleton {
+    static let shared = Singleton()
+    
+    var restaurant: Menu?
+}
 class Menu {
     var snack: Product
     var mainMenu: Product
@@ -90,65 +92,65 @@ class ViewController: UIViewController {
     let drink = Drinks(price: 20, name: "Mojito")
     let dessert = Deserts(price: 20, name: "Strawberry cake")
     
-    func printOutMeal(_ product: Product){
-        print("Name: '\(product.name)' and price: '\(product.price)'")
-    }
+//    func printOutMeal(_ product: Product){
+//        print("Name: '\(product.name)' and price: '\(product.price)'")
+//    }
     
     
-    var mainButtonTappedCount = 0
+    var mainButtonStatus = 0
     var sumOfDay = 0
     @IBAction func snackButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 1 {
+        if mainButtonStatus == 1 {
             sumOfDay+=snack.price
             mainPriceLabel.text = "+ \(snack.name)"
         }
         
     }
     @IBAction func mainMenuButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 1 {
+        if mainButtonStatus == 1 {
             sumOfDay+=mainMenu.price
             mainPriceLabel.text = "+ \(mainMenu.name)"
         }
     }
     
     @IBAction func secondMainMenuButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 1 {
+        if mainButtonStatus == 1 {
             sumOfDay+=secondMainMenu.price
             mainPriceLabel.text = "+ \(secondMainMenu.name)"
         }
     }
     
     @IBAction func drinkButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 1 {
+        if mainButtonStatus == 1 {
             sumOfDay+=drink.price
             mainPriceLabel.text = "+ \(drink.name)"
         }
     }
     
     @IBAction func dessertButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 1 {
+        if mainButtonStatus == 1 {
             sumOfDay+=dessert.price
             mainPriceLabel.text = "+ \(dessert.name)"
         }
     }
     
     @IBAction func mainButtonTapped(_ sender: UIButton) {
-        if mainButtonTappedCount == 0 {
+        if mainButtonStatus == 0 {
             mainButton.setTitle("Закончить смену", for: .normal)
-            mainButtonTappedCount = 1
+            mainButtonStatus = 1
             mainPriceLabel.text = "Смена начата"
             
         }
-        else if mainButtonTappedCount == 1 {
+        else if mainButtonStatus == 1 {
             mainButton.setTitle("Выйти из системы", for: .normal)
-            mainButtonTappedCount = 2
+            mainButtonStatus = 2
             mainPriceLabel.text = "Выручка за смену: \(sumOfDay)$. Чтобы полностью закончить смену выйдите из системы"
             print("Выручка за смену: \(sumOfDay)$")
         }
         else {
             mainButton.setTitle("Начать смену", for: .normal)
             mainPriceLabel.text = "Смена не начата"
-            mainButtonTappedCount = 0
+            mainButtonStatus = 0
             sumOfDay = 0
         }
     }
